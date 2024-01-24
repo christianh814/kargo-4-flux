@@ -14,6 +14,8 @@ kind: Stage
 metadata:
   name: test
   namespace: kargo-demo
+  annotations:
+    kargo.akuity.io/color: red
 spec:
   subscriptions:
     warehouse: kargo-demo
@@ -30,6 +32,8 @@ kind: Stage
 metadata:
   name: uat
   namespace: kargo-demo
+  annotations:
+    kargo.akuity.io/color: yellow
 spec:
   subscriptions:
     upstreamStages:
@@ -47,6 +51,8 @@ kind: Stage
 metadata:
   name: prod
   namespace: kargo-demo
+  annotations:
+    kargo.akuity.io/color: green
 spec:
   subscriptions:
     upstreamStages:
