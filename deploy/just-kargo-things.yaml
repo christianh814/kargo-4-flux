@@ -1,0 +1,60 @@
+apiVersion: kargo.akuity.io/v1alpha1
+kind: Warehouse
+metadata:
+  name: kargo-demo
+  namespace: kargo-demo
+spec:
+  subscriptions:
+  - git:
+      repoURL: https://github.com/christianh814/kargo-simple-demo
+      branch: main
+---
+apiVersion: kargo.akuity.io/v1alpha1
+kind: Stage
+metadata:
+  name: test
+  namespace: kargo-demo
+spec:
+  subscriptions:
+    warehouse: kargo-demo
+  promotionMechanisms:
+    gitRepoUpdates:
+    - repoURL: https://github.com/christianh814/kargo-simple-demo
+      writeBranch: stage/test
+    argoCDAppUpdates:
+    - appName: kargo-demo-test
+      appNamespace: argocd
+---
+apiVersion: kargo.akuity.io/v1alpha1
+kind: Stage
+metadata:
+  name: uat
+  namespace: kargo-demo
+spec:
+  subscriptions:
+    upstreamStages:
+    - name: test
+  promotionMechanisms:
+    gitRepoUpdates:
+    - repoURL: https://github.com/christianh814/kargo-simple-demo
+      writeBranch: stage/uat
+    argoCDAppUpdates:
+    - appName: kargo-demo-uat
+      appNamespace: argocd
+---
+apiVersion: kargo.akuity.io/v1alpha1
+kind: Stage
+metadata:
+  name: prod
+  namespace: kargo-demo
+spec:
+  subscriptions:
+    upstreamStages:
+    - name: uat
+  promotionMechanisms:
+    gitRepoUpdates:
+    - repoURL: https://github.com/christianh814/kargo-simple-demo
+      writeBranch: stage/prod
+    argoCDAppUpdates:
+    - appName: kargo-demo-prod
+      appNamespace: argocd
