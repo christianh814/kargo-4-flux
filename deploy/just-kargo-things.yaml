@@ -1,4 +1,10 @@
 apiVersion: kargo.akuity.io/v1alpha1
+kind: Project
+metadata:
+  name: kargo-demo
+spec: {}
+---
+apiVersion: kargo.akuity.io/v1alpha1
 kind: Warehouse
 metadata:
   name: kargo-demo
@@ -6,7 +12,7 @@ metadata:
 spec:
   subscriptions:
   - git:
-      repoURL: https://github.com/christianh814/kargo-simple-demo
+      repoURL: https://github.com/christianh814/kargo-4-flux
       branch: main
 ---
 apiVersion: kargo.akuity.io/v1alpha1
@@ -14,47 +20,47 @@ kind: Stage
 metadata:
   name: test
   namespace: kargo-demo
+  annotations:
+    kargo.akuity.io/color: red
 spec:
   subscriptions:
     warehouse: kargo-demo
   promotionMechanisms:
     gitRepoUpdates:
-    - repoURL: https://github.com/christianh814/kargo-simple-demo
+    - repoURL: https://github.com/christianh814/kargo-4-flux
       writeBranch: stage/test
-    argoCDAppUpdates:
-    - appName: kargo-demo-test
-      appNamespace: argocd
+    argoCDAppUpdates: []
 ---
 apiVersion: kargo.akuity.io/v1alpha1
 kind: Stage
 metadata:
   name: uat
   namespace: kargo-demo
+  annotations:
+    kargo.akuity.io/color: yellow
 spec:
   subscriptions:
     upstreamStages:
     - name: test
   promotionMechanisms:
     gitRepoUpdates:
-    - repoURL: https://github.com/christianh814/kargo-simple-demo
+    - repoURL: https://github.com/christianh814/kargo-4-flux
       writeBranch: stage/uat
-    argoCDAppUpdates:
-    - appName: kargo-demo-uat
-      appNamespace: argocd
+    argoCDAppUpdates: []
 ---
 apiVersion: kargo.akuity.io/v1alpha1
 kind: Stage
 metadata:
   name: prod
   namespace: kargo-demo
+  annotations:
+    kargo.akuity.io/color: green
 spec:
   subscriptions:
     upstreamStages:
     - name: uat
   promotionMechanisms:
     gitRepoUpdates:
-    - repoURL: https://github.com/christianh814/kargo-simple-demo
+    - repoURL: https://github.com/christianh814/kargo-4-flux
       writeBranch: stage/prod
-    argoCDAppUpdates:
-    - appName: kargo-demo-prod
-      appNamespace: argocd
+    argoCDAppUpdates: []
