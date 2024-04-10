@@ -13,7 +13,7 @@ kargo create project kargo-demo
 ```shell
 kargo create credentials \
 --project=kargo-demo kargo-demo-repo \
---git --repo-url=https://github.com/christianh814/kargo-simple-demo/ \
+--git --repo-url=https://github.com/christianh814/kargo-4-flux/ \
 --username=christianh814 --password=${KARGO_GH_PAT}
 ```
 

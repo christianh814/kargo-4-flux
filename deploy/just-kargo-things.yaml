@@ -12,7 +12,7 @@ metadata:
 spec:
   subscriptions:
   - git:
-      repoURL: https://github.com/christianh814/kargo-simple-demo
+      repoURL: https://github.com/christianh814/kargo-4-flux
       branch: main
 ---
 apiVersion: kargo.akuity.io/v1alpha1
@@ -27,7 +27,7 @@ spec:
     warehouse: kargo-demo
   promotionMechanisms:
     gitRepoUpdates:
-    - repoURL: https://github.com/christianh814/kargo-simple-demo
+    - repoURL: https://github.com/christianh814/kargo-4-flux
       writeBranch: stage/test
     argoCDAppUpdates: []
 ---
@@ -44,7 +44,7 @@ spec:
     - name: test
   promotionMechanisms:
     gitRepoUpdates:
-    - repoURL: https://github.com/christianh814/kargo-simple-demo
+    - repoURL: https://github.com/christianh814/kargo-4-flux
       writeBranch: stage/uat
     argoCDAppUpdates: []
 ---
@@ -61,6 +61,6 @@ spec:
     - name: uat
   promotionMechanisms:
     gitRepoUpdates:
-    - repoURL: https://github.com/christianh814/kargo-simple-demo
+    - repoURL: https://github.com/christianh814/kargo-4-flux
       writeBranch: stage/prod
     argoCDAppUpdates: []
