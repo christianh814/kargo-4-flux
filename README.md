@@ -1,4 +1,11 @@
-# kargo-simple-demo
+# Kargo Demo for Flux
+
+Two repos:
+
+* [Flux Repo](https://github.com/christianh814/flux-kargo), which has all the installation components
+* [This App repo](#kargo-demo-for-flux), which has all the application (GOBG) manifests for each env
+
+# Insturcitons (High Level)
 
 0. Create KIND Cluster
 
@@ -57,3 +64,10 @@ kargo create credentials \
 --git --repo-url=https://github.com/christianh814/kargo-4-flux \
 --username=christianh814 --password=${KARGO_GH_PAT}
 ```
+
+4. Open UIs
+
+* [Kargo UI](https://localhost:31444)
+* [Test App](https://localhost:30081)
+* [UAT App](https://localhost:30082)
+* [Prod App](https://localhost:30083)
