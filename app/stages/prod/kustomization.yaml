@@ -6,3 +6,12 @@ namespace: gobg-prod
 resources:
 - ns.yaml
 - ../../base
+
+patches:
+  - target:
+      kind: Service
+      name: gobg
+    patch: |-
+      - op: replace
+        path: /spec/ports/0/nodePort
+        value: 30083
