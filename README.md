@@ -4,7 +4,7 @@
 
 ```shell
 export GITHUB_TOKEN=$GH_TOKEN
-flux bootstrap github --token-auth --owner christianh814 --personal --private --repository kargo-4-flux
+flux bootstrap github --token-auth --owner christianh814 --personal --private --repository flux-kargo
 ```
 
 2. Create Kargo Project:
