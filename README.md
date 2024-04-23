@@ -1,24 +1,23 @@
 # kargo-simple-demo
 
-After installing **Kargo** and **Argo CD**
+2. Bootstrap Flux
 
-1. Create Kargo Project:
+```shell
+export GITHUB_TOKEN=$GH_TOKEN
+flux bootstrap github --token-auth --owner christianh814 --personal --private --repository kargo-4-flux
+```
+
+2. Create Kargo Project:
 
 ```shell
 kargo create project kargo-demo
 ```
 
-2. Create Secret: 
+3. Create Secret: 
 
 ```shell
 kargo create credentials \
 --project=kargo-demo kargo-demo-repo \
 --git --repo-url=https://github.com/christianh814/kargo-4-flux/ \
 --username=christianh814 --password=${KARGO_GH_PAT}
-```
-
-3. Deploy This Repo
-
-```shell
-kubectl apply -k  ./deploy/
 ```
