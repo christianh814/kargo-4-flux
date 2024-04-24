@@ -68,6 +68,6 @@ kargo create credentials \
 4. Open UIs
 
 * [Kargo UI](https://localhost:31444)
-* [Test App](https://localhost:30081)
-* [UAT App](https://localhost:30082)
-* [Prod App](https://localhost:30083)
+* [Test App](http://localhost:30081)
+* [UAT App](http://localhost:30082)
+* [Prod App](http://localhost:30083)
