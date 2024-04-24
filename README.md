@@ -71,3 +71,11 @@ kargo create credentials \
 * [Test App](http://localhost:30081)
 * [UAT App](http://localhost:30082)
 * [Prod App](http://localhost:30083)
+
+5. Make Change
+
+```shell
+cd ./app/base
+kustomize edit set image christianh814/gobg:green
+cd -
+```
