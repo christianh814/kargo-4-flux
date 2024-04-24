@@ -1,0 +1,16 @@
+apiVersion: kargo.akuity.io/v1alpha1
+kind: Stage
+metadata:
+  name: prod
+  namespace: kargo-demo
+  annotations:
+    kargo.akuity.io/color: green
+spec:
+  subscriptions:
+    upstreamStages:
+    - name: uat
+  promotionMechanisms:
+    gitRepoUpdates:
+    - repoURL: https://github.com/christianh814/kargo-4-flux
+      writeBranch: stage/prod
+    argoCDAppUpdates: []
