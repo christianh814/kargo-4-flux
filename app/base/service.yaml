@@ -9,5 +9,7 @@ spec:
   - port: 8080
     protocol: TCP
     targetPort: 8080
+    nodePort: 30099
   selector:
     app: gobg
+  type: NodePort
