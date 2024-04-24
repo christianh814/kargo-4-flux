@@ -62,6 +62,8 @@ kargo create credentials \
 
 5. Make Change
 
+Change the image
+
 ```shell
 cd ./app/base
 kustomize edit set image christianh814/gobg:green
