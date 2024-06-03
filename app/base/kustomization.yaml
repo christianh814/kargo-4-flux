@@ -4,3 +4,7 @@ kind: Kustomization
 resources:
 - deploy.yaml
 - service.yaml
+
+images:
+- name: christianh814/gobg
+  newTag: blue
