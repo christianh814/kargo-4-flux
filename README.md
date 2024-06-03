@@ -36,24 +36,12 @@ export GITHUB_TOKEN=$GH_TOKEN
 flux bootstrap github --token-auth --owner christianh814 --personal --private --repository flux-kargo
 ```
 
-2. Create Kargo Project:
+2. Login to Kargo
 
 First login to Kargo
 
 ```shell
 kargo login --admin --insecure-skip-tls-verify https://localhost:31444
-```
-
-Create project
-
-```shell
-kargo create project kargo-demo
-```
-
-Reconcile Kustomization
-
-```shell
-flux reconcile kustomization kargo-demo
 ```
 
 3. Create Secret: 
@@ -73,6 +61,8 @@ kargo create credentials \
 * [Prod App](http://localhost:30083)
 
 5. Make Change
+
+Change the image
 
 ```shell
 cd ./app/base
