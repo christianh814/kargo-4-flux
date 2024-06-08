@@ -14,10 +14,10 @@ spec:
           annotations:
             analysis: kargo-demo
         spec:
-          serviceAccountName: fluxtoolbox
           backoffLimit: 1
           template:
             spec:
+              serviceAccountName: fluxtoolbox
               containers:
               - name: fluxtoolbox
                 image: quay.io/christianh814/fluxtoolbox
