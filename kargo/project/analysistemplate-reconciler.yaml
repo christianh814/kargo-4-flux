@@ -22,6 +22,6 @@ spec:
               - name: fluxtoolbox
                 image: quay.io/christianh814/fluxtoolbox
                 command: ["flux", "reconcile", "kustomization", "--with-source"]
-                args: "{{ args.appname }}"
+                args: ["{{ args.appname }}"]
                 imagePullPolicy: IfNotPresent
               restartPolicy: Never
