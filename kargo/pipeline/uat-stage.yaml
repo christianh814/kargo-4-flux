@@ -9,6 +9,12 @@ spec:
   subscriptions:
     upstreamStages:
     - name: test
+  verification:
+    analysisTemplates:
+    - name: flux-reconciler
+    args:
+    - name: appname
+      value: gobg-uat
   promotionMechanisms:
     gitRepoUpdates:
     - repoURL: https://github.com/christianh814/kargo-4-flux
