@@ -8,6 +8,12 @@ metadata:
 spec:
   subscriptions:
     warehouse: kargo-demo
+  verification:
+    analysisTemplates:
+    - name: flux-reconciler
+    args:
+    - name: appname
+      value: gobg-test
   promotionMechanisms:
     gitRepoUpdates:
     - repoURL: https://github.com/christianh814/kargo-4-flux
