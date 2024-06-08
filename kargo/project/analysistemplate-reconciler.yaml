@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AnalysisTemplate
+metadata:
+  name: flux-reconciler
+  namespace: kargo-demo
+spec:
+  args:
+  - name: appname
+  metrics:
+  - name: flux-reconciler
+    provider:
+      job:
+        metadata:
+          annotations:
+            analysis: kargo-demo
+        spec:
+          serviceAccountName: fluxtoolbox
+          backoffLimit: 1
+          template:
+            spec:
+              containers:
+              - name: fluxtoolbox
+                image: quay.io/christianh814/fluxtoolbox
+                command: ["flux", "reconcile", "kustomization", "--with-source"]
+                args: "{{ args.appname }}"
+                imagePullPolicy: IfNotPresent
+              restartPolicy: Never
