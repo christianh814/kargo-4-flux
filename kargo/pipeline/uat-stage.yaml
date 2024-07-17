@@ -6,9 +6,13 @@ metadata:
   annotations:
     kargo.akuity.io/color: yellow
 spec:
-  subscriptions:
-    upstreamStages:
-    - name: test
+  requestedFreight:
+  - origin:
+      kind: Warehouse
+      name: kargo-demo
+    sources:
+      stages:
+      - test
   verification:
     analysisTemplates:
     - name: flux-reconciler
