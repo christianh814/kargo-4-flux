@@ -1,0 +1,44 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: gobg-test
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: gobg
+  name: gobg
+  namespace: gobg-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gobg
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: gobg
+    spec:
+      containers:
+      - image: christianh814/gobg:blue
+        name: gobg
+        resources: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: gobg
+  name: gobg
+  namespace: gobg-test
+spec:
+  ports:
+  - nodePort: 30081
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: gobg
+  type: NodePort
