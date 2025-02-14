@@ -12,14 +12,12 @@ spec:
       name: kargo-demo
     sources:
       direct: true
-  verification:
-    analysisTemplates:
-    - name: flux-reconciler
-    args:
-    - name: appname
-      value: gobg-test
-  promotionMechanisms:
-    gitRepoUpdates:
-    - repoURL: https://github.com/christianh814/kargo-4-flux
-      writeBranch: stage/test
-    argoCDAppUpdates: []
+  promotionTemplate:
+    spec:
+      vars:
+      - name: targetBranch
+        value: test
+      steps:
+      - task:
+          name: gobg-promote
+        as: promote-to-test

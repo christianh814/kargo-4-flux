@@ -1,0 +1,50 @@
+---
+apiVersion: kargo.akuity.io/v1alpha1
+kind: PromotionTask
+metadata:
+  name: gobg-promote
+  namespace: kargo-demo
+spec:
+  vars:
+  - name: repoURL
+    value: https://github.com/christianh814/kargo-4-flux
+  - name: sourceBranch
+    value: main
+  - name: targetBranch
+
+  steps:
+
+  - uses: git-clone
+    as: clone
+    config:
+      repoURL: ${{ vars.repoURL }}
+      checkout:
+      - branch: ${{ vars.sourceBranch }}
+        path: ./src
+      - branch: stage/${{ vars.targetBranch }}
+        create: true
+        path: ./dst
+
+  - uses: git-clear
+    as: clear
+    config:
+      path: ./dst
+
+  - uses: kustomize-build
+    as: build-manifests
+    config:
+      path: ./src/app/stages/${{ vars.targetBranch }}
+      outPath: ./dst/${{ vars.targetBranch }}.yaml
+
+  - uses: git-commit
+    as: commit
+    config:
+      path: ./dst
+      messageFromSteps:
+      - build-manifests
+
+  - uses: git-push
+    as: push
+    config:
+      path: ./dst
+      targetBranch: stage/${{ vars.targetBranch }}
