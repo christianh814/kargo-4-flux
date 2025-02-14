@@ -8,3 +8,5 @@ spec:
   - git:
       repoURL: https://github.com/christianh814/kargo-4-flux
       branch: main
+      includePaths:
+        - app/
