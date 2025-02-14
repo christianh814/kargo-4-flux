@@ -13,14 +13,12 @@ spec:
     sources:
       stages:
       - test
-  verification:
-    analysisTemplates:
-    - name: flux-reconciler
-    args:
-    - name: appname
-      value: gobg-uat
-  promotionMechanisms:
-    gitRepoUpdates:
-    - repoURL: https://github.com/christianh814/kargo-4-flux
-      writeBranch: stage/uat
-    argoCDAppUpdates: []
+  promotionTemplate:
+    spec:
+      vars:
+      - name: targetBranch
+        value: uat
+      steps:
+      - task:
+          name: gobg-promote
+        as: promote-to-uat
