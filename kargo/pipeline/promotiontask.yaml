@@ -48,3 +48,15 @@ spec:
     config:
       path: ./dst
       targetBranch: stage/${{ vars.targetBranch }}
+
+  - uses: http
+    config:
+      method: POST
+      url: http://webhook-receiver.flux-system.svc.cluster.local/4315495f645d7bf402af65742d556afcbed6ea5f14de1da8620d6c3ccf9469ea
+      headers:
+      - name: Authorization
+        value: Bearer ${{ secrets.webhook-token.token }}
+      - name: Content-Type
+        value: application/json
+      body: |
+        ${{ quote({"do":"sync"}) }}
